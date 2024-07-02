@@ -29,3 +29,86 @@ submenu.forEach((menu) => menu.addEventListener('click', function(e) {
     }
 }))
 
+
+
+
+//Sorter
+
+const sorter = document.querySelector('.sort-list');
+if(sorter) {
+    const sortLi = sorter.querySelectorAll('li');
+    sorter.querySelector('.opt-trigger').addEventListener('click', function() {
+        sorter.querySelector('ul').classList.toggle('show')
+    });
+    sortLi.forEach((item) => item.addEventListener('click', function() {
+        sortLi.forEach((li) => li != this ? li.classList.remove('active') : null);
+
+        this.classList.add('active');
+        sorter.querySelector('.opt-trigger span.value').textContent = this.textContent;
+        sorter.querySelector('ul').classList.toggle('show')
+    }))
+
+}
+
+
+
+
+
+
+//SLIDER
+
+const swiper = new Swiper('.sliderbox', {
+
+    loop: true,
+    effect: 'fade',
+    autoHeight: true,
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  
+    // // Navigation arrows
+    // navigation: {
+    //   nextEl: '.swiper-button-next',
+    //   prevEl: '.swiper-button-prev',
+    // },
+  
+    // // And if we need scrollbar
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',
+    // },
+  });
+
+  //Arrival
+
+  const arrivals = new Swiper('.arrivalbox', {
+
+    spaceBetween: 30,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+  
+    // If we need pagination
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        481: {
+            slidesPerView: 2,
+            slidesPerGroup: 1,
+            centeredSlides: false,
+        },
+        640: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            centeredSlides: false,
+        },
+        992: {
+            slidesPerView:4,
+            slidesPerGroup: 4,
+            centeredSlides: false,
+        }
+    }
+  });
