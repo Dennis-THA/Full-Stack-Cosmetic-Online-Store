@@ -729,6 +729,19 @@ form :where(input, textarea, select)::placeholder {
   transition-delay: .75s;
 }
 
+/* ____________________ *
+    Form ###
+* _____________________ */
+
+
+
+
+
+
+
+
+
+
  /* __________________ *
         #Guide
   * __________________ */
@@ -1108,3 +1121,6 @@ main > div .heading {
     left: -40px;
   }
 }
+
+
+

@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Signup</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'website/css/form.css' %}" />
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">GlowGoddess</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div class="img" style="background-image: url({% static 'website/images/login.jpg' %});"></div>
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4">Sign Up Form</h3>
+                    {% if messages %}
+                      {% for message in messages %}
+                          {{ message }}
+                          <br>
+                       {% endfor %}
+                     {% endif %}
+                  </div>
+                </div>
+                <form method="POST" action="{% url 'signup' %}" class="signup-form">
+                  {% csrf_token %}
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">First Name</label>
+                    <input type="text" class="form-control" placeholder="Firstname" name="fname" value="{{ fname }}" required />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Lastname" name="lname" value="{{ lname }}"/>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Age</label>
+                    <input type="number" class="form-control" placeholder="Your age" name="age" value="{{ age }}" required />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Email</label>
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ email }}" required />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="{{ password }}" required />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Phone</label>
+                    <input type="tel" class="form-control" placeholder="Enter your Phone Number" name="phone" value="{{ phone }}" required />
+                  </div><br>
+
+                  <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
