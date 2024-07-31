@@ -14,8 +14,20 @@ class Member(models.Model):
     def __str__(self):
         return f"{self.fname} {self.lname}"
     
-    def save(self, *args, **kwargs):
-        # Hash the password before saving
-        self.password = make_password(self.password)
-        super(Member, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # Hash the password before saving
+    #     self.password = make_password(self.password)
+    #     super(Member, self).save(*args, **kwargs)
     
+class Item(models.Model):
+    title = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    old_price = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_label = models.CharField(max_length=20, default='')
+    image = models.ImageField(upload_to='item_images')
+    image_hover = models.ImageField(upload_to='item_images')
+
+
+
+    def __str__(self):
+        return self.title
