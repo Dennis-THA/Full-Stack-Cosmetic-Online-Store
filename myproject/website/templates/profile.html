@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Profile Page
+{% endblock %}
+
+{% block main %}
+{% comment %} <div class="profile-section">
+    <div class="container">
+        <div class="wrap">
+            <div class="content">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        {% if form.instance.profile_pic %}
+                            <img src="{{ form.instance.profile_pic.url }}" alt="Profile Picture">
+                        {% else %}
+                            <p>No profile picture uploaded.</p>
+                        {% endif %}
+                    </div>
+                    <h2 class="user-name">
+                        {{ form.instance.fname }} {{ form.instance.lname }}
+                    </h2>
+                </div>
+                <form method="post" enctype="multipart/form-data" class="profile-form">
+                    {% csrf_token %}
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_fname">First Name</label>
+                                {{ form.fname }}
+                            </div>
+                            <div>
+                                <label for="id_lname">Last Name</label>
+                                {{ form.lname }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_email">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div>
+                                <label for="id_phone">Phone</label>
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_age">Age</label>
+                                {{ form.age }}
+                            </div>
+                            <div>
+                                <label for="id_password">New Password</label>
+                                {{ form.password }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_profile_pic">Profile Picture</label>
+                                {{ form.profile_pic }}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<div class="profile-section">
+    <div class="container">
+        <div class="wrap">
+            <div class="content">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        {% if form.instance.profile_pic %}
+                            <img src="{{ form.instance.profile_pic.url }}" alt="Profile Picture">
+                        {% else %}
+                            <p>No profile picture uploaded.</p>
+                        {% endif %}
+                    </div>
+                    <h2 class="user-name">
+                        {{ form.instance.fname }} {{ form.instance.lname }}
+                    </h2>
+                </div>
+                <form method="post" enctype="multipart/form-data" class="profile-form">
+                    {% csrf_token %}
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_fname">First Name</label>
+                                {{ form.fname }}
+                            </div>
+                            <div>
+                                <label for="id_lname">Last Name</label>
+                                {{ form.lname }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_email">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div>
+                                <label for="id_phone">Phone</label>
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_age">Age</label>
+                                {{ form.age }}
+                            </div>
+                            <div>
+                                <label for="id_password">New Password</label>
+                                {{ form.password }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dotgrid">
+                        <div class="wrapper">
+                            <div>
+                                <label for="id_profile_pic">Profile Picture</label>
+                                <div class="profile-pic-upload">
+                                    {{ form.profile_pic }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

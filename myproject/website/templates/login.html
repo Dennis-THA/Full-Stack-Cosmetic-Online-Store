@@ -36,7 +36,7 @@
                     </p>
                   </div>
                 </div>
-				{% if messages %}
+				        {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-danger" role="alert">
                                 {{ message }}
@@ -70,7 +70,10 @@
                   </div>
                 </form>
                 <p class="text-center">
-                  Not a member? <a data-toggle="tab" href="#signup">Sign Up</a>
+                  Not a member? <a data-toggle="tab" href="{% url 'signup' %}">Sign Up</a>
+                </p>
+                <p class="text-center">
+                  Back to  <a data-toggle="tab" href="{% url 'home' %}">Home</a>
                 </p>
               </div>
             </div>

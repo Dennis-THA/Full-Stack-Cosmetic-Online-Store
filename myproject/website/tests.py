@@ -1,12 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 from .models import Member, Item
-from .forms import Memberform, LoginForm
+from .forms import MemberForm, LoginForm
 
 class MemberModelTest(TestCase):
 
     def setUp(self):
-        Member.objects.create(
+        self.member = Member.objects.create(
             fname="John",
             lname="Doe",
             email="john.doe@example.com",
@@ -16,13 +16,12 @@ class MemberModelTest(TestCase):
         )
 
     def test_member_str(self):
-        member = Member.objects.get(email="john.doe@example.com")
-        self.assertEqual(str(member), "John Doe")
+        self.assertEqual(str(self.member), "John Doe")
 
 class ItemModelTest(TestCase):
 
     def setUp(self):
-        Item.objects.create(
+        self.item = Item.objects.create(
             title="Test Item",
             price=100.00,
             old_price=120.00,
@@ -32,8 +31,7 @@ class ItemModelTest(TestCase):
         )
 
     def test_item_str(self):
-        item = Item.objects.get(title="Test Item")
-        self.assertEqual(str(item), "Test Item")
+        self.assertEqual(str(self.item), "Test Item")
 
 class SignupViewTest(TestCase):
 
@@ -52,8 +50,8 @@ class SignupViewTest(TestCase):
             'phone': '1234567890'
         }
         response = self.client.post(reverse('signup'), data)
-        self.assertEqual(response.status_code, 200)  # Check if it redirects to success page
-        self.assertTemplateUsed(response, 'success.html')
+        self.assertEqual(response.status_code, 302)  # Check if it redirects to success page
+        self.assertRedirects(response, reverse('signup_success'))
         self.assertTrue(Member.objects.filter(email='john.doe@example.com').exists())
 
 class LoginViewTest(TestCase):
@@ -111,7 +109,7 @@ class HomeViewTest(TestCase):
 class MemberFormTest(TestCase):
 
     def test_member_form_valid(self):
-        form = Memberform(data={
+        form = MemberForm(data={
             'fname': 'John',
             'lname': 'Doe',
             'email': 'john.doe@example.com',
@@ -122,7 +120,7 @@ class MemberFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_member_form_invalid(self):
-        form = Memberform(data={})
+        form = MemberForm(data={})
         self.assertFalse(form.is_valid())
         self.assertEqual(len(form.errors), 6)  # Ensure all fields are required
 
@@ -139,4 +137,3 @@ class LoginFormTest(TestCase):
         form = LoginForm(data={})
         self.assertFalse(form.is_valid())
         self.assertEqual(len(form.errors), 2)  # Ensure both fields are required
-

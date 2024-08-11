@@ -416,15 +416,19 @@ Home Page
                                 <div class="item">
                                     <div class="dot-image">
                                         <!-- Link to item details can be omitted or used for a different purpose -->
-                                        <a href="#" class="product-permalink"></a>
+                                        {% comment %} <a href="" class="product-permalink"></a> {% endcomment %}
                                         {% if item.image %}
                                             <div class="thumbnail">
-                                                <img src="{{item.image.url}}" alt="{{ item.title }}">
+                                                <a href="{% url 'product_detail' item.id %}">
+                                                    <img src="{{item.image.url}}" alt="{{ item.title }}">
+                                                </a>
                                             </div>
                                         {% endif %}
                                         {% if item.image_hover %}
                                             <div class="thumbnail hover">
-                                                <img src="{{item.image_hover.url}}" alt="{{ item.title }}">
+                                                <a href="{% url 'product_detail' item.id %}">
+                                                    <img src="{{item.image_hover.url}}" alt="{{ item.title }}">
+                                                </a>
                                             </div>
                                         {% endif %}
                                         <div class="actions">

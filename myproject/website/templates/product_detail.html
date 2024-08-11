@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+Product Detail
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <div class="container">
+        <div class="wrap">
+            <div class="product dotgrid">
+                <div class="wrapper">
+                    <div class="image">
+                        <div class="outer-main">
+                            <div class="main-image swiper">
+                                <div class="wrap swiper-wrapper">
+                                    {% for image in item.variation_images.all %}
+                                        <div class="item swiper-slide">
+                                            <img src="{{ image.image.url }}" alt="{{ item.title }}">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="custom-pagination">
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="outer-thumb ob-cover">
+                            <div class="thumbnail-image swiper">
+                                <div class="wrap swiper-wrapper">
+                                    {% for image in item.variation_images.all %}
+                                        <div class="item swiper-slide">
+                                            <div class="thumb-wrap">
+                                                <img src="{{ image.image.url }}" alt="{{ item.title }}">
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary">
+                        <div class="entry">
+                            <h1 class="title">{{ item.title }}</h1>
+                            <div class="product-group">
+                                <div class="product-price">
+                                    <!-- Current Price -->
+                                    <span class="current">${{ item.price }}</span>
+                    
+                                    <!-- Old Price -->
+                                    {% if item.old_price or item.discount_label %}
+                                        <div class="wrap">
+                                            {% if item.old_price %}
+                                                <span class="before">${{ item.old_price }}</span>
+                                            {% endif %}
+                                            {% if item.discount_label %}
+                                                <span class="discount">{{ item.discount_label }}</span>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="product-rating">
+                                    <span>
+                                        <i class="ri-star-fill"></i>
+                                        <span>{{ avg_rating|floatformat:1 }}</span>
+                                    </span>
+                                    <a href="">{{ review_count }} Reviews</a>
+                                </div>
+                            </div>
+                            <div class="product-color">
+                                <span>Shades:</span>
+                                <div class="wrap">
+                                    <button class="red selected"></button>
+                                    <button class="pink"></button>
+                                    <button class="matte"></button>
+                                </div>
+                            </div>
+                            <div class="product-stock">
+                                <div class="wrap">
+                                    <strong>114</strong>
+                                    <span class="grey-color">in stock</span>
+                                    <i class="ri-checkbox-circle-line"></i>
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <div class="qty">
+                                    <button type="button" class="decrease">-</button>
+                                    <input type="number" name="quantity" value="1" class="quantity-input" min="1" required>
+                                    <button type="button" class="increase">+</button>
+                                </div>
+                                <div class="addcart">
+                                    <button type="button" class="primary-btn" >Add To Cart</button>
+                                </div>
+                                <div class="buynow button">
+                                    <button type="button" class="secondary-btn">Buy Now</button>
+                                </div>
+                            </div>
+                 
+                            <div class="product-control list-inline">
+                                <ul>
+                                    <li><a href=""><i class="ri-heart-line"></i><span>Add to wishlist</span></a></li>
+                                    <li><a href=""><i class="ri-arrow-left-right-line"></i><span>Compare</span></a></li>
+                                    <li><a href="#0" trigger-button data-target="data-share"><i class="ri-share-forward-line"></i><span>Share</span></a></li>
+                                    <li><a href="#0" trigger-button data-target="data-question"><i class="ri-question-line"></i><span>Ask Question</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="shipping">
+                                <ul>
+                                    <li>
+                                        <i class="ri-gift-line"></i>
+                                        <span>Free shipping and return</span>
+                                        <span class="grey-color">On orders over $100</span>
+                                    </li>
+                                    <li>
+                                        <i class="ri-truck-line"></i>
+                                        <span>Estimate delivery:</span>
+                                        <span class="grey-color">Within 5 working days</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product detail">
+                <div class="wrapper tabbed">
+                    <nav class="list-inline scrollto">
+                        <ul class="wrapper">
+                            <li class="active"><a href="#0" class="tabbed-trigger" data-id="product-details"><span>Product Details</span></a></li>
+                            <li><a href="#0" class="tabbed-trigger" data-id="product-review"><span>Reviews</span><span class="item-floating">{{ review_count }}</span></a></li>
+                            <li><a href="#0" class="tabbed-trigger" data-id="product-shipping"><span>Shipping</span></a></li>                           
+                        </ul>
+                    </nav>
+                    <div id="product-description" class="product-about description active">
+                        <div class="text-block">
+                            <h3>MAC matte color lipstick</h3>
+                            <div class="grey-color">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate eleifend sapien.</p>
+                            </div>
+                        </div>
+                        <div class="dotgrid">
+                            <div class="wrapper">
+                                <div class="list-block">
+                                    <h4>What is this?</h4>
+                                    <ul class="grey-color">
+                                        <li>Lipstick which will last a day!</li>
+                                        <li>Must be stored under room temperature.</li>
+                                        <li>Make the lip glow and wet.</li>
+                                        <li>No chemical substances.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="list-block">
+                                    <h4>What makes this product so famous?</h4>
+                                     <p class="grey-color">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate eleifend sapien.</p>
+                                </div>
+                                <div class="list-block">
+                                    <h4>Color shades guide:</h4>
+                                     <p class="grey-color">Lorem ipsum dolor sit amet, consectetur adipiscing elit, Fusce vulputate eleifend sapien.Vivamus lacinia odio vitae vestibulum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="product-review" class="product-about review">
+                        <div class="wrapper">
+                            <h3>Ratings and Reviews</h3>
+                            <div class="head-review">
+                                <div class="sum-rating">
+                                    <strong>{{ avg_rating|floatformat:1 }}</strong>
+                                    <span>{{ review_count }} reviews</span>
+                                </div>
+                                <div class="button">
+                                    <a href="#0" class="primary-btn" trigger-button data-target="data-review">Write a review</a>
+                                </div>
+                            </div>
+                            <div class="body-review">
+                                {% for review in reviews %}
+                                    <div class="profile">
+                                        <div class="thumb-name">
+                                            <div class="image">
+                                                <img src="{% if review.profile_pic %}{{ review.profile_pic.url }}{% else %}{% static 'website/images/default-profile.webp' %}{% endif %}" alt="">
+                                            </div>
+                                            <div class="grouping">
+                                                <div class="name">{{ review.name }}</div>
+                                                <div class="rating">
+                                                    <span>Your rating: </span>
+                                                    <div class="stars">
+                                                        {% for star in review.rating|star_rating %}
+                                                            <i class="{{ star }}"></i>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>                                                
+                                                <div class="date grey-color">{{ review.created_at|date:"F j, Y" }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <strong>{{ review.title }}</strong>
+                                            <p class="grey-color">{{ review.content }}</p>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <p>No reviews yet.</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div id="product-shipping" class="product-about shipping">
+                        <div class="grey-color">
+                            <p>At GlowGodess, we strive to provide fast and reliable shipping for all orders.</p>
+                            <p>All orders are processed within 1-2 business days.</p>
+                            <p>Orders placed after 3 PM (EST) will be processed the following business day.</p>
+                            <p>Thank you so much for shopping at GlowGoddess.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="data-share" class="data-popup d-share">
+    <div class="wrap">
+        <div class="data-content">
+            <a href="#0" class="close-trigger" close-button><i class="ri-close-line"></i></a>
+            <div class="form">
+                <label>Copy link</label>
+                <input type="text" disabled value="https://www.maccosmeticsnordics.com">
+                <span><i class="ri-file-copy-line"></i></span>
+            </div>
+            <div class="media-share list-inline">
+                <label>Share</label>
+                <ul>
+                    <li><a href=""><i class="ri-facebook-line"></i></a></li>
+                    <li><a href=""><i class="ri-instagram-line"></i></a></li>
+                    <li><a href=""><i class="ri-pinterest-line"></i></a></li>
+                    <li><a href=""><i class="ri-youtube-line"></i></a></li>
+                    <li><a href=""><i class="ri-whatsapp-line"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="data-question" class="data-popup d-question">
+    <div class="wrap">
+        <div class="data-content">
+            <a href="#0" class="close-trigger" close-button><i class="ri-close-line"></i></a>
+            <h3>The question</h3>
+            <form action="">
+                <div><input type="text" placeholder="Name"></div>
+                <div><input type="text" placeholder="Email"></div>
+                <div><textarea placeholder="Ask your question here ......" cols="30" rows="5"></textarea></div>
+                <div class="button">
+                    <button type="submit" class="secondary-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="data-share" class="data-popup d-share">
+    <div class="wrap">
+        <div class="data-content">
+            <a href="#0" class="close-trigger" close-button><i class="ri-close-line"></i></a>
+            <div class="form">
+                <label>Copy link</label>
+                <input type="text" disabled value="https://www.maccosmeticsnordics.com">
+                <span><i class="ri-file-copy-line"></i></span>
+            </div>
+            <div class="media-share list-inline">
+                <label>Share</label>
+                <ul>
+                    <li><a href=""><i class="ri-facebook-line"></i></a></li>
+                    <li><a href=""><i class="ri-instagram-line"></i></a></li>
+                    <li><a href=""><i class="ri-pinterest-line"></i></a></li>
+                    <li><a href=""><i class="ri-youtube-line"></i></a></li>
+                    <li><a href=""><i class="ri-whatsapp-line"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="data-question" class="data-popup d-question">
+    <div class="wrap">
+        <div class="data-content">
+            <a href="#0" class="close-trigger" close-button><i class="ri-close-line"></i></a>
+            <h3>The question</h3>
+            <form action="">
+                <div><input type="text" placeholder="Name"></div>
+                <div><input type="text" placeholder="Email"></div>
+                <div><textarea placeholder="Ask your question here ......" cols="30" rows="5"></textarea></div>
+                <div class="button">
+                    <button type="submit" class="secondary-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="data-review" class="data-popup d-review">
+    <div class="wrap">
+        <div class="data-content">
+            <a href="#0" class="close-trigger" close-button><i class="ri-close-line"></i></a>
+            <h3>Write a Review</h3>
+            <form method="post" action="{% url 'add_review' item.id %}">
+                {% csrf_token %}
+                <div class="dotgrid">
+                    <div class="wrapper">
+                        <div>
+                            <input type="text" name="name" placeholder="Name" 
+                                   {% if user.is_authenticated %} 
+                                       value="{{ member.fname }}" readonly 
+                                   {% endif %} 
+                                   required>
+                        </div>
+                        <div>
+                            <input type="email" name="email" placeholder="Email" 
+                                   {% if user.is_authenticated %} 
+                                       value="{{ member.email }}" readonly 
+                                   {% endif %} 
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating">
+                    <span>Your rating: </span>
+                    <div class="stars">
+                        <input type="radio" name="rating" id="star5" value="5">
+                        <label for="star5"><i class="ri-star-fill"></i></label>
+                        <input type="radio" name="rating" id="star4" value="4">
+                        <label for="star4"><i class="ri-star-fill"></i></label>
+                        <input type="radio" name="rating" id="star3" value="3">
+                        <label for="star3"><i class="ri-star-fill"></i></label>
+                        <input type="radio" name="rating" id="star2" value="2">
+                        <label for="star2"><i class="ri-star-fill"></i></label>
+                        <input type="radio" name="rating" id="star1" value="1">
+                        <label for="star1"><i class="ri-star-fill"></i></label>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" name="title" placeholder="Review Title" required>
+                </div>
+                <div>
+                    <textarea name="content" placeholder="Write your review here ......" cols="30" rows="5" required></textarea>
+                </div>
+                <div class="button">
+                    <button type="submit" class="secondary-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

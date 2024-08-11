@@ -1,6 +1,8 @@
 const triggerOpen = document.querySelectorAll('[trigger-button]');
 const triggerClose = document.querySelectorAll('[close-button]');
 const overlay = document.querySelector('[data-overlay]');
+const csrfToken = '{{ csrf_token }}'; 
+const MEDIA_URL = "{{ MEDIA_URL }}"; 
 
 for (let i = 0; i < triggerOpen.length; i++) {
     let currentId = triggerOpen[i].dataset.target,
@@ -132,3 +134,88 @@ const swiper = new Swiper('.sliderbox', {
         }
     }
   });
+
+
+// product image > product page
+
+const thumbImage = new Swiper('.thumbnail-image', {
+
+    // loop: true,
+    direction: 'vertical',
+    spaceBetween: 15,
+    slidesPerView: 1,
+    freeMode: true,
+    watchSlidesProgress: true,
+  
+});
+
+const mainImage = new Swiper('.main-image', {
+
+    loop: true,
+    autoHeight: true,
+
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    thumbs: {
+        swiper: thumbImage,
+    },
+  
+});
+
+
+// Cart
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('addToCartButton').addEventListener('click', function () {
+        var itemId = this.getAttribute('data-item-id');
+        fetch(`/add-to-cart/${itemId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({ quantity: 1 })
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/cart/';
+            } else {
+                alert('Failed to add item to cart');
+            }
+        });
+    });
+});
+
+function getProductDetailUrl(itemId) {
+    return `/product/${itemId}/`;
+}
+
+// Function to handle search results display
+function displaySearchResults(items) {
+    const searchResultsContainer = document.getElementById('search-results');
+    searchResultsContainer.innerHTML = ''; // Clear previous results
+
+    items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+            <a href="${getProductDetailUrl(item.id)}">
+                <img src="${item.image}" alt="${item.title}">
+                <span>${item.title}</span>
+            </a>
+        `;
+        searchResultsContainer.appendChild(itemElement);
+    });
+}
+
+// Event listener for search input
+document.getElementById('search-input').addEventListener('input', function() {
+    const query = this.value;
+    
+    // Fetch search results from the server (assuming you have an endpoint for this)
+    fetch(`/search/?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => displaySearchResults(data.items))
+        .catch(error => console.error('Error fetching search results:', error));
+});

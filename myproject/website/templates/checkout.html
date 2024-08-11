@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Checkout Page
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <div class="container">
+        <div class="wrap">
+
+            <div class="content">
+                <div class="checkout-address">
+                    <h2>Billing Details</h2>
+                    <form action="">
+                        <div class="dotgrid">
+                            <div class="wrapper">
+                                <div>
+                                    <label>First Name *</label>
+                                    <input type="text" placeholder="First name">
+                                </div>
+                                <div>
+                                    <label>Last Name *</label>
+                                    <input type="text" placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label>Company Name</label>
+                            <input type="text" placeholder="Company name">
+                        </div>
+                        <div>
+                            <label for="country">Country / Region *</label>
+                            <select name="country" id="country">
+                                <option value=""></option>
+                                <option value="1">Afganistan</option>
+                                <option value="2">Aland Island</option>
+                                <option value="3">Albiana</option>
+                                <option value="4" selected="selected">United States</option>
+                                <option value="5">Others</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Street Address *</label>
+                            <input type="text" placeholder="Street Address">
+                            <input type="text" placeholder="Apartment, suite etc. (Optional)">
+                        </div>
+                        <div>
+                            <label>Town / City *</label>
+                            <input type="text" placeholder="Town / City">
+                        </div>
+                        <div>
+                            <label>State *</label>
+                            <input type="text" placeholder="State">
+                        </div>
+                        <div>
+                            <label>Zip Code *</label>
+                            <input type="text" placeholder="Zip Code">
+                        </div>
+                        <div class="dotgrid">
+                            <div class="wrapper">
+                                <div>
+                                    <label>Phone *</label>
+                                    <input type="tel" placeholder="Phone">
+                                </div>
+                                <div>
+                                    <label>Email *</label>
+                                    <input type="text" placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="check-option">
+                                <input type="checkbox" class="checker">
+                                <span>Create an account?</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="checkout-products has-bg">
+                    <div class="order-summary">
+                        <div class="wrapper">
+                            <h2>Order Summary</h2>
+                            <div class="product-list">
+                                <ul>
+                                    <li>
+                                        <div class="grouping">
+                                            <div class="thumbnail ob-cover">
+                                                <span class="item-floating">x1</span>
+                                                <img src="images/lip1.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="variants">
+                                            <h4 class="dot-title"><a href="">Mac color lipstick</a></h4>
+                                            <div class="color grey-color">
+                                                <span>Shades</span>
+                                                <span>Red</span>
+                                            </div>
+                                            <div class="price-item">
+                                                <span>$45.00</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="grouping">
+                                            <div class="thumbnail ob-cover">
+                                                <span class="item-floating">x1</span>
+                                                <img src="images/lip1.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="variants">
+                                            <h4 class="dot-title"><a href="">Mac color lipstick</a></h4>
+                                            <div class="color grey-color">
+                                                <span>Shades</span>
+                                                <span>Red</span>
+                                            </div>
+                                            <div class="price-item">
+                                                <span>$45.00</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="grouping">
+                                            <div class="thumbnail ob-cover">
+                                                <span class="item-floating">x1</span>
+                                                <img src="images/lip1.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="variants">
+                                            <h4 class="dot-title"><a href="">Mac color lipstick</a></h4>
+                                            <div class="color grey-color">
+                                                <span>Shades</span>
+                                                <span>Red</span>
+                                            </div>
+                                            <div class="price-item">
+                                                <span>$45.00</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-summary has-bg">
+                        <div class="wrapper cart-footer">
+                            <div class="payment-options list-inline">
+                                <span>Select Payment Method</span>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="pay-option" id="cc">
+                                        <label for="cc"><i class="ri-bank-card-line"></i></label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="pay-option" id="pp">
+                                        <label for="pp"><i class="ri-paypal-line"></i></label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="pay-option" id="cod">
+                                        <label for="cod"><i class="ri-hand-coin-line"></i></label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="discount">
+                                <form action="">
+                                    <input type="text" class="input" placeholder="Coupon">
+                                    <input type="submit" class="submit" value="Apply">
+                                </form>
+                            </div>
+                            <div class="math-pricing">
+                                <ul>
+                                    <li>
+                                        <span>Subtotal</span>
+                                        <span class="value">$147.00</span>
+                                    </li>
+                                    <li>
+                                        <span>Tax</span>
+                                        <span class="value">$14.70</span>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><span>Shipping</span></li>
+                                            <li>
+                                                <div>
+                                                    <input type="radio" class="checker">
+                                                    <label>Free</label>
+                                                </div>
+                                                <span class="value">$0.00</span>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <input type="radio" class="checker">
+                                                    <label>Standard</label>
+                                                </div>
+                                                <span class="value">$10.00</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Promo Discount</span>
+                                        <span class="value">$0.00</span>
+                                    </li>
+                                    <li class="total">
+                                        <span>Total</span>
+                                        <span class="value">$161.70</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="button">
+                                <a href="" class="secondary-btn">Place Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

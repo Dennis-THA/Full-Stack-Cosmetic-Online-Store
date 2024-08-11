@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Cart Page
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <div class="container">
+        <div class="wrap">
+            <div class="heading">
+                <h1 class="title">Cart</h1>
+            </div>
+            <div class="content">
+                <div class="cart-table">
+                    <div class="product-list has-bg">
+                        <div class="table-title">
+                            <ul>
+                                <li class="dotgrid">
+                                    <div class="grouping wrapper">
+                                        <span></span>
+                                        <span>Product</span>
+                                    </div>
+                                    <div class="grouping wrapper">
+                                        <span>Price</span>
+                                        <span>Qty</span>
+                                        <span>Total</span>
+                                        <span></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="table-content">
+                            <ul>
+                                {% for item in cart_items %}
+                                <li class="dotgrid">
+                                    <div class="grouping wrapper">
+                                        <div class="thumbnail ob-cover">
+                                            <a href="{% url 'product_detail' item.item.id %}">
+                                                <img src="{{ item.item.image.url }}" alt="{{ item.item.name }}">
+                                            </a>
+                                        </div>
+                                        <div class="variants">
+                                            <h4 class="dot-title">
+                                                <a href="{% url 'product_detail' item.item.id %}">{{ item.item.name }}</a>
+                                            </h4>
+                                            <div class="color grey-color">
+                                                <span>Shades:</span>
+                                                <span>{{ item.item.shade }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grouping wrapper">
+                                        <div class="price">${{ item.item.price }}</div>
+                                        <div class="quantity">
+                                            <div class="control">
+                                                <form method="post" action="{% url 'update_cart_quantity' item.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" name="action" value="decrease">-</button>
+                                                    <input type="text" name="quantity" value="{{ item.quantity }}" readonly>
+                                                    <button type="submit" name="action" value="increase">+</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="price-sub">${{ item.total_price }}</div>
+                                        <a href="{% url 'remove_from_cart' item.id %}" class="item-remove">
+                                            <i class="ri-close-line"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                {% empty %}
+                                <p>Your cart is empty.</p>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <div class="product-list has-bg">
+                        <div class="table-content">
+                            <div class="grouping">
+                                <div class="add-note">
+                                    <textarea rows="3" placeholder="Additional Note +"></textarea>
+                                </div>
+                                <div class="sub-total">
+                                    <div class="sub-pricing">
+                                        <span>Subtotal</span>
+                                        <span class="sub-total-price">${{ total_price }}</span>
+                                    </div>
+                                    <div class="sub-terms">
+                                        <input type="checkbox" class="checker" id="terms">
+                                        <label for="terms">I agree to <a href="" class="grey-link">Terms & Conditions</a></label>
+                                    </div>
+                                    <div class="button">
+                                        <a href="" class="secondary-btn">Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
